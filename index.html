@@ -151,7 +151,7 @@
             color: #d94f91;
         }
 
-        /* AMPlOP PEMBUKA */
+        /* AMPLOP PEMBUKA */
 
         .amplop-pembuka {
             position: relative;
@@ -345,6 +345,34 @@
             50% {
                 transform: translateY(-20px) rotate(10deg);
                 opacity: 1;
+            }
+        }
+
+        /* EFEK BUNGA TERBANG */
+
+        .bunga-terbang {
+            position: fixed;
+            top: -50px;
+            z-index: 9998;
+            pointer-events: none;
+            user-select: none;
+            animation: bungaJatuh linear forwards;
+        }
+
+        @keyframes bungaJatuh {
+            0% {
+                transform: translateY(-5vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(35px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(110vh) translateX(-35px) rotate(360deg);
+                opacity: 0;
             }
         }
 
@@ -710,7 +738,7 @@
 
 <body>
 
-    <!-- HALAMAN PEMBUKA PINK KAWAII -->
+    <!-- HALAMAN PEMBUKA -->
 
     <div id="halamanPembuka">
         <div class="dekorasi dekorasi-kiri">🎀</div>
@@ -1043,8 +1071,6 @@
 
                     history.replaceState(null, "", "#home");
 
-                    /* LAGU OTOMATIS DIPUTAR */
-
                     lagu.play().catch(function() {
                         console.log(
                             "Lagu belum dapat diputar otomatis. Tekan Play."
@@ -1139,6 +1165,37 @@
         function bukaKejutan() {
             document.getElementById("hadiah").classList.toggle("tampil");
         }
+    </script>
+
+    <!-- SCRIPT EFEK BUNGA TERBANG -->
+
+    <script>
+        (function() {
+            var daftarBunga = ["🌸", "🌷", "🌼", "🪷", "🌺"];
+
+            function buatBunga() {
+                var bunga = document.createElement("span");
+
+                bunga.className = "bunga-terbang";
+
+                bunga.textContent =
+                    daftarBunga[
+                        Math.floor(Math.random() * daftarBunga.length)
+                    ];
+
+                bunga.style.left = Math.random() * 100 + "vw";
+                bunga.style.fontSize = (18 + Math.random() * 18) + "px";
+                bunga.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+                document.body.appendChild(bunga);
+
+                setTimeout(function() {
+                    bunga.remove();
+                }, 13000);
+            }
+
+            setInterval(buatBunga, 700);
+        })();
     </script>
 
 </body>
