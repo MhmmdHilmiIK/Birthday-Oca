@@ -1,101 +1,85 @@
-```html
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Lagu Untukmu ♡</title>
-
+    <title>Musik untuk Oca ♡</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .musicbox {
-            text-align: center;
-        }
-
-        .music-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        .music-player {
-            display: block;
-            visibility: visible;
-            opacity: 1;
-            width: 100%;
-            max-width: 400px;
-            height: 54px;
-            margin: 25px auto;
-        }
-
-        .music-decoration {
-            font-size: 35px;
-            margin: 20px 0;
-        }
-    </style>
 </head>
-
 <body>
 
-    <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="kenangan.html">📸 Kenangan</a>
-        <a href="surat.html">💌 Surat</a>
-        <a class="active" href="musik.html">🎵 Musik</a>
-        <a href="kejutan.html">🎁 Kejutan</a>
-    </nav>
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="kenangan.html">📸 Kenangan</a>
+    <a href="surat.html">💌 Surat</a>
+    <a class="active" href="musik.html">🎵 Musik</a>
+    <a href="kejutan.html">🎁 Kejutan</a>
+</nav>
 
-    <main class="center">
+<main class="center">
 
-        <div class="panel musicbox">
+    <section class="hero">
+        <span class="tag">A LITTLE SONG FOR YOU ♡</span>
 
-            <div class="music-icon">🎧</div>
+        <div class="bow">🎀</div>
 
-            <p class="note">A SONG JUST FOR YOU ♡</p>
+        <h1>Musik <span>Untuk Oca</span></h1>
 
-            <h1 style="font-size: clamp(38px, 7vw, 58px);">
-                Lagu Untukmu ♡
-            </h1>
+        <p class="sub">
+            Sebuah lagu kecil untuk seseorang yang spesial. 💗
+        </p>
+
+        <div class="decor">🎧 🎶 🌷 🎶 🎧</div>
+    </section>
+
+    <section class="panel center">
+        <div class="musicbox">
+
+            <div class="music-icon">🎵</div>
+
+            <h2>Lagu Spesial untuk Oca</h2>
 
             <p class="sub">
-                Sebuah lagu spesial untuk hari spesialmu.
+                Putar lagunya, duduk santai, dan nikmati hari spesialmu. ♡
             </p>
 
-            <div class="music-decoration">
-                💿 🎀 ♡ 🎶
-            </div>
-
-            <p><strong>Putar lagu spesialmu di sini ♡</strong></p>
-
-            <audio
-                class="music-player"
-                controls
-                loop
-                preload="metadata">
-                <source
-                    src="./music/lagu-oca.mp3"
-                    type="audio/mpeg">
+            <audio controls loop preload="metadata">
+                <source src="music/lagu-oca.mp3" type="audio/mpeg">
                 Browser kamu tidak mendukung pemutar audio.
             </audio>
 
-            <p class="sub">
-                Tekan ▶ untuk memutar lagu.
-                Semoga harimu selalu penuh kebahagiaan ♡
+            <p class="note">
+                🎀 Made with love for Oca 🎀
             </p>
 
-            <div class="music-decoration">
-                🌷 🧸 💗 🦋
-            </div>
-
-            <a href="index.html" class="btn">
-                ♡ Kembali ke Home ♡
-            </a>
-
         </div>
+    </section>
 
-    </main>
+    <section class="panel center">
+        <div style="font-size:45px">💗 🎧 💗</div>
+
+        <h2>Semoga Kamu Suka ♡</h2>
+
+        <p class="sub">
+            Semoga lagu ini bisa menemani hari ulang tahunmu
+            dan menjadi bagian kecil dari kenangan manis yang indah. 🌷
+        </p>
+
+        <div class="decor">🧸 💌 🎀 ✨ 💌 🧸</div>
+
+        <a class="btn" href="kejutan.html">
+            Buka kejutan berikutnya 🎁
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    satu lagu, banyak cerita, dan doa terbaik untuk Oca ♡
+</footer>
+
+<script src="app.js"></script>
 
 </body>
 </html>
-```
