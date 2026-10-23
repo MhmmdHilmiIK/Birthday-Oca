@@ -1,49 +1,687 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Happy Birthday ♡</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Oca! 🎂💗</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: #fff0f6;
+            color: #713b58;
+            overflow-x: hidden;
+        }
+
+        /* Hiasan hati */
+        .floating-heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 24px;
+            animation: naik 8s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        @keyframes naik {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigasi */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 222, 235, 0.96);
+            padding: 15px 10px;
+            box-shadow: 0 3px 12px #e7a5c355;
+            text-align: center;
+        }
+
+        nav .logo {
+            display: block;
+            color: #d94f91;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: #a83e76;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 8px 10px;
+            margin: 2px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.aktif {
+            background: #f49ac2;
+            color: white;
+        }
+
+        /* Semua bagian */
+        section {
+            position: relative;
+            z-index: 1;
+            min-height: 85vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            scroll-margin-top: 100px;
+        }
+
+        .judul {
+            font-size: clamp(28px, 5vw, 42px);
+            color: #d94f91;
+            margin-bottom: 18px;
+        }
+
+        .deskripsi {
+            max-width: 650px;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .stiker {
+            font-size: 35px;
+            margin: 12px 0;
+        }
+
+        /* Home */
+        #home {
+            background: linear-gradient(135deg, #ffe0ed, #fff5fa, #ffd6e8);
+        }
+
+        .kotak-home {
+            max-width: 750px;
+            background: #ffffffc9;
+            border: 3px dashed #f3a0c4;
+            border-radius: 35px;
+            padding: 35px 22px;
+            box-shadow: 0 12px 30px #d98db833;
+        }
+
+        .label-kecil {
+            display: inline-block;
+            background: #ffe0ed;
+            color: #bd4b83;
+            border-radius: 25px;
+            padding: 9px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .nama-oca {
+            font-size: clamp(42px, 9vw, 72px);
+            color: #e45b9c;
+            margin: 12px 0;
+            text-shadow: 3px 3px #ffc5dd;
+        }
+
+        .tombol {
+            display: inline-block;
+            border: none;
+            border-radius: 30px;
+            padding: 13px 22px;
+            background: #ed80b1;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 6px;
+            transition: 0.3s;
+        }
+
+        .tombol:hover {
+            background: #d94f91;
+            transform: translateY(-3px);
+        }
+
+        /* Kenangan */
+        #kenangan {
+            background: #fff8fb;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .memory-card {
+            background: white;
+            border: 2px solid #ffd0e3;
+            border-radius: 22px;
+            padding: 12px;
+            box-shadow: 0 6px 16px #d98db822;
+            transform: rotate(-1deg);
+            transition: 0.3s;
+        }
+
+        .memory-card:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .memory-card:hover {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
+        .memory-card img {
+            display: block;
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 15px;
+            background: #ffe5f0;
+        }
+
+        .foto-placeholder {
+            display: none;
+            height: 230px;
+            border-radius: 15px;
+            background: #ffe5f0;
+            color: #c15a8d;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .foto-placeholder span {
+            font-size: 38px;
+        }
+
+        .caption {
+            padding: 12px 5px 5px;
+            font-weight: bold;
+            color: #bc5287;
+        }
+
+        /* Surat */
+        #surat {
+            background: linear-gradient(135deg, #fff0f6, #ffe1ed);
+        }
+
+        .surat-kertas {
+            max-width: 680px;
+            width: 100%;
+            background: #fffdf5;
+            border: 2px solid #f6c4d8;
+            border-radius: 8px 25px 8px 25px;
+            padding: 30px 25px;
+            text-align: left;
+            line-height: 2;
+            box-shadow: 7px 7px 0 #f4b2cf;
+        }
+
+        .surat-kertas h3 {
+            text-align: center;
+            color: #d94f91;
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
+
+        .surat-kertas p {
+            margin-bottom: 14px;
+        }
+
+        .tanda-tangan {
+            text-align: right;
+            color: #d94f91;
+            font-weight: bold;
+        }
+
+        /* Musik */
+        #musik {
+            min-height: 65vh;
+            background: #fff8fb;
+        }
+
+        .musik-card {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            border: 2px solid #ffd0e3;
+            border-radius: 30px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 25px #d98db822;
+        }
+
+        .piringan {
+            font-size: 85px;
+            animation: putar 6s linear infinite;
+            margin: 15px;
+        }
+
+        @keyframes putar {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Kejutan */
+        #kejutan {
+            background: linear-gradient(135deg, #ffdbea, #fff0f6, #ffe1ed);
+        }
+
+        .kejutan-card {
+            max-width: 650px;
+            background: #ffffffd9;
+            border-radius: 30px;
+            padding: 35px 22px;
+            border: 2px dashed #f3a0c4;
+        }
+
+        #pesanKejutan {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            background: #fff0f6;
+            border-radius: 20px;
+            line-height: 1.9;
+            animation: muncul 0.7s ease;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: #ffdbea;
+            color: #a83e76;
+            padding: 25px 15px;
+            line-height: 1.8;
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 550px) {
+            nav {
+                padding: 12px 5px;
+            }
+
+            nav a {
+                padding: 7px 8px;
+                font-size: 12px;
+            }
+
+            section {
+                padding: 65px 15px;
+            }
+
+            .memory-grid {
+                gap: 10px;
+            }
+
+            .memory-card {
+                padding: 7px;
+            }
+
+            .memory-card img,
+            .foto-placeholder {
+                height: 155px;
+            }
+
+            .caption {
+                font-size: 12px;
+            }
+
+            .surat-kertas {
+                padding: 22px 17px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<nav>
-    <a class="active" href="index.html">🏠 Home</a>
-    <a href="kenangan.html">📸 Kenangan</a>
-    <a href="surat.html">💌 Surat</a>
-    <a href="musik.html">🎵 Musik</a>
-    <a href="kejutan.html">🎁 Kejutan</a>
-</nav>
+    <nav>
+        <span class="logo">🎀 Little Birthday World 🎀</span>
+        <a href="#home" class="aktif">🏠 Home</a>
+        <a href="#kenangan">📸 Kenangan</a>
+        <a href="#surat">💌 Surat</a>
+        <a href="#musik">🎵 Musik</a>
+        <a href="#kejutan">🎁 Kejutan</a>
+    </nav>
 
-<div class="mini-music">
-    <span>🎀 Lagu untuk Oca ♡</span>
-    <audio controls loop>
-        <source src="music/lagu-oca.mp3" type="audio/mpeg">
-        Browser kamu tidak mendukung pemutar audio.
-    </audio>
-</div>
+    <!-- HOME -->
+    <section id="home">
+        <div class="kotak-home">
+            <div class="stiker">🎂 🧸 🎀 🐰</div>
+            <span class="label-kecil">♡ A special day for someone special ♡</span>
 
-<header class="hero">
-    <div class="tag">A LITTLE WEBSITE MADE WITH LOVE</div>
-    <div class="bow">୨୧ 🎀 ୨୧</div>
-    <p class="sub">hari spesial seseorang yang spesial</p>
-    <h1>Happy Birthday,<br><span>Sayang!</span> ♡</h1>
-    <p class="sub">Aku punya kejutan kecil yang kubuat khusus untukmu...</p>
-    <a class="btn" href="kejutan.html">Buka kejutanmu ♡</a>
-    <div class="decor">♡ 🧸 ✧ 🌷 ♡ 🎀</div>
-</header>
+            <h1 class="judul">Happy Birthday!</h1>
+            <div class="nama-oca">Oca 💗</div>
 
-<main class="center">
-    <section class="panel">
-        <h2>Untuk kamu yang spesial 💗</h2>
-        <p class="sub">Ada kenangan untuk dilihat, lagu untuk didengarkan, dan surat kecil yang ingin kusampaikan.</p>
-        <a class="btn" href="kenangan.html">Lihat kenangan kita →</a>
+            <p class="deskripsi">
+                Hari ini adalah hari spesial untuk seseorang yang juga spesial.
+                Semoga hari-harimu dipenuhi kebahagiaan, cinta, tawa,
+                dan hal-hal kecil yang bikin kamu tersenyum.
+            </p>
+
+            <div class="stiker">🌷 🍰 💕 🦢</div>
+
+            <a href="#kenangan" class="tombol">
+                Lihat Kenangan ♡
+            </a>
+            <a href="#kejutan" class="tombol">
+                Buka Kejutan 🎁
+            </a>
+        </div>
     </section>
-</main>
 
-<footer>dibuat dengan banyak cinta ♡ · happy birthday!</footer>
+    <!-- KENANGAN -->
+    <section id="kenangan">
+        <h2 class="judul">Our Little Memories 📸</h2>
 
-<script src="app.js"></script>
+        <p class="deskripsi">
+            Beberapa foto yang menyimpan cerita.
+            Semoga setiap kenangan ini selalu punya tempat
+            yang manis untuk diingat. 💕
+        </p>
+
+        <div class="memory-grid">
+
+            <div class="memory-card">
+                <img
+                    src="images/foto1.jpg"
+                    alt="Foto kenangan pertama"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="foto-placeholder">
+                    <span>🐰</span>
+                    <p>Taruh foto1.jpg di folder images</p>
+                </div>
+                <p class="caption">🌸 Sweet Memory #1</p>
+            </div>
+
+            <div class="memory-card">
+                <img
+                    src="images/foto2.jpg"
+                    alt="Foto kenangan kedua"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="foto-placeholder">
+                    <span>🎀</span>
+                    <p>Taruh foto2.jpg di folder images</p>
+                </div>
+                <p class="caption">🍰 Sweet Memory #2</p>
+            </div>
+
+            <div class="memory-card">
+                <img
+                    src="images/foto3.jpg"
+                    alt="Foto kenangan ketiga"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="foto-placeholder">
+                    <span>🧸</span>
+                    <p>Taruh foto3.jpg di folder images</p>
+                </div>
+                <p class="caption">💗 Sweet Memory #3</p>
+            </div>
+
+            <div class="memory-card">
+                <img
+                    src="images/foto4.jpg"
+                    alt="Foto kenangan keempat"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="foto-placeholder">
+                    <span>🌷</span>
+                    <p>Taruh foto4.jpg di folder images</p>
+                </div>
+                <p class="caption">🦢 Sweet Memory #4</p>
+            </div>
+
+        </div>
+
+        <div class="stiker">📷 💞 🐻‍❄️ 📷</div>
+    </section>
+
+    <!-- SURAT -->
+    <section id="surat">
+        <h2 class="judul">A Little Letter for You 💌</h2>
+
+        <p class="deskripsi">
+            Ada sedikit surat yang ingin disampaikan khusus untuk Oca.
+        </p>
+
+        <div class="surat-kertas">
+            <h3>To My Special Person 💗</h3>
+
+            <p>Dear Oca, 🌷</p>
+
+            <p>
+                Happy birthday, yaa! Semoga di hari spesial ini,
+                Oca selalu dikelilingi orang-orang yang tulus menyayangi Oca.
+                Semoga semua hal baik datang satu per satu ke dalam hidup Oca.
+            </p>
+
+            <p>
+                Semoga Oca selalu diberikan kesehatan, kebahagiaan,
+                kekuatan untuk melewati hari-hari yang sulit, dan keberanian
+                untuk mengejar semua impian yang Oca punya.
+            </p>
+
+            <p>
+                Kalau suatu hari semuanya terasa melelahkan,
+                semoga Oca selalu ingat bahwa Oca sudah berusaha sejauh ini.
+                Jangan terlalu keras sama diri sendiri, ya.
+                Oca juga pantas mendapatkan istirahat dan kebahagiaan.
+            </p>
+
+            <p>
+                Terima kasih sudah menjadi Oca yang apa adanya.
+                Semoga senyum Oca selalu punya banyak alasan untuk hadir,
+                dan semoga tahun ini membawa banyak cerita indah yang
+                nantinya bisa Oca kenang sambil tersenyum.
+            </p>
+
+            <p>
+                Sekali lagi, happy birthday, Oca!
+                Stay happy, stay healthy, and keep being wonderful. 🎂
+            </p>
+
+            <p class="tanda-tangan">
+                With lots of love, ♡<br>
+                Someone who wishes you the best 💕
+            </p>
+        </div>
+    </section>
+
+    <!-- MUSIK -->
+    <section id="musik">
+        <h2 class="judul">A Song for You 🎵</h2>
+
+        <div class="musik-card">
+            <div class="piringan">💿</div>
+
+            <h3>Our Birthday Playlist 💗</h3>
+
+            <p class="deskripsi">
+                Putar lagu ini sambil menikmati halaman kecil
+                yang dibuat khusus untuk Oca. 🎧
+            </p>
+
+            <p>🎶 Lagu spesial untuk Oca 🎶</p>
+
+            <audio id="laguOca" controls loop preload="auto">
+                <source src="music/lagu-oca.mp3" type="audio/mpeg">
+                Browser kamu tidak mendukung pemutar musik.
+            </audio>
+
+            <p style="font-size: 13px; margin-top: 15px;">
+                ♡ Tekan Play untuk mulai mendengarkan ♡
+            </p>
+        </div>
+    </section>
+
+    <!-- KEJUTAN -->
+    <section id="kejutan">
+        <div class="kejutan-card">
+            <div class="stiker">🎁 🧸 🎂 🎀</div>
+
+            <h2 class="judul">One Last Surprise! 💝</h2>
+
+            <p class="deskripsi">
+                Masih ada satu kejutan kecil yang menunggu.
+                Berani buka? Hehe. 🤭
+            </p>
+
+            <button class="tombol" onclick="bukaKejutan()">
+                Buka Hadiahmu! 🎁
+            </button>
+
+            <div id="pesanKejutan">
+                <div class="stiker">🎉 💗 🌷 🎂 💗 🎉</div>
+
+                <h2 style="color: #d94f91; margin-bottom: 15px;">
+                    HAPPY BIRTHDAY, OCA! 🥳
+                </h2>
+
+                <p>
+                    Semoga semua doa baik yang Oca panjatkan
+                    menemukan jalannya untuk menjadi nyata.
+                </p>
+
+                <p>
+                    Semoga rezekinya lancar, hatinya tenang,
+                    langkahnya dimudahkan, dan bahagianya
+                    selalu lebih banyak daripada sedihnya.
+                </p>
+
+                <p>
+                    Jangan lupa bahagia hari ini, besok,
+                    dan di hari-hari berikutnya, ya! 💗
+                </p>
+
+                <div class="stiker">🧁 🐰 💐 💌 🧸</div>
+
+                <p><strong>You deserve all the happiness in the world! ♡</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with 💗, love, and a little bit of magic ✨</p>
+        <p>Specially made for Oca 🎀</p>
+        <p>© Birthday Website ♡</p>
+    </footer>
+
+    <script>
+        // Hiasan hati yang melayang
+        function buatHati() {
+            var hati = document.createElement("div");
+            hati.className = "floating-heart";
+
+            var pilihanHati = ["💗", "💕", "💖", "🎀", "🌸"];
+            hati.innerHTML = pilihanHati[
+                Math.floor(Math.random() * pilihanHati.length)
+            ];
+
+            hati.style.left = Math.random() * 100 + "vw";
+            hati.style.animationDuration = (5 + Math.random() * 5) + "s";
+            hati.style.fontSize = (16 + Math.random() * 20) + "px";
+
+            document.body.appendChild(hati);
+
+            setTimeout(function() {
+                hati.remove();
+            }, 10000);
+        }
+
+        setInterval(buatHati, 800);
+
+        // Tombol kejutan
+        function bukaKejutan() {
+            var pesan = document.getElementById("pesanKejutan");
+
+            pesan.style.display = "block";
+
+            pesan.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            // Hati tambahan saat hadiah dibuka
+            for (var i = 0; i < 12; i++) {
+                setTimeout(buatHati, i * 150);
+            }
+        }
+
+        // Menu mengikuti bagian halaman yang sedang dilihat
+        var bagianHalaman = document.querySelectorAll("section");
+        var tautanMenu = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", function() {
+            var bagianAktif = "";
+
+            bagianHalaman.forEach(function(bagian) {
+                var posisi = bagian.getBoundingClientRect();
+
+                if (posisi.top <= 180 && posisi.bottom > 180) {
+                    bagianAktif = bagian.id;
+                }
+            });
+
+            tautanMenu.forEach(function(tautan) {
+                tautan.classList.remove("aktif");
+
+                if (tautan.getAttribute("href") === "#" + bagianAktif) {
+                    tautan.classList.add("aktif");
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
