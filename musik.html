@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .musicbox audio {
+        .musicbox {
+            text-align: center;
+        }
+
+        .music-player {
             display: block;
             width: 100%;
             max-width: 400px;
             margin: 25px auto;
         }
 
-        .musicbox {
-            text-align: center;
+        .music-icon {
+            font-size: 55px;
         }
     </style>
 </head>
@@ -36,39 +40,19 @@
 
             <div class="music-icon">🎧</div>
 
-            <p class="note">A SONG JUST FOR YOU</p>
+            <p class="note">A SONG JUST FOR YOU ♡</p>
 
             <h1 style="font-size: clamp(38px, 7vw, 58px);">
                 Lagu Untukmu ♡
             </h1>
 
             <p class="sub">
-                Putar lagu pilihanmu sambil menikmati hari spesial ini.
+                Sebuah lagu spesial untuk hari spesialmu.
             </p>
 
             <div style="font-size: 38px;">
                 💿 🎀 ♡ 🎶
             </div>
 
-            <audio controls loop preload="auto">
-                <source src="./music/song.mp3" type="audio/mpeg">
-                Browser tidak mendukung pemutar audio.
-            </audio>
-
-            <p class="note">
-                ♡ Sebuah lagu spesial untuk hari spesialmu ♡
-            </p>
-
-            <p class="sub">
-                Tekan tombol ▶ untuk memutar lagu.
-            </p>
-
-        </div>
-    </main>
-
-    <footer>
-        tekan play untuk memulai lagu ♡
-    </footer>
-
-</body>
-</html>
+            <audio class="music-player" controls loop preload="
+            
