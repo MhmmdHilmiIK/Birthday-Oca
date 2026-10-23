@@ -1,0 +1,11 @@
+PETUNJUK WEBSITE BIRTHDAY MULTI-HALAMAN
+1. Ekstrak ZIP.
+2. Masukkan foto ke folder images dengan nama foto1.jpg, foto2.jpg, ... foto8.jpg.
+3. Masukkan lagu MP3 ke folder music dengan nama song.mp3.
+4. Klik dua kali index.html untuk melihat website.
+5. Untuk mengganti nama, buka index.html dan surat.html dengan Notepad lalu ubah teks "Sayang".
+6. Agar online: buat repository Public di GitHub bernama birthday-surprise.
+7. Upload semua ISI folder ini (semua file HTML, style.css, folder images, folder music) ke root repository.
+8. Buka Settings > Pages > Deploy from a branch > main > /(root) > Save.
+9. Tunggu beberapa menit. Link akan terlihat di Settings > Pages, biasanya https://USERNAME.github.io/birthday-surprise/
+Catatan: musik perlu ditekan play. Repository Public berarti foto dan lagu bisa diakses publik.
