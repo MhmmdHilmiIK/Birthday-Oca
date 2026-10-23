@@ -1,8 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Lagu Untukmu ♡</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,26 +14,24 @@
             text-align: center;
         }
 
+        .music-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
         .music-player {
             display: block;
+            visibility: visible;
+            opacity: 1;
             width: 100%;
             max-width: 400px;
+            height: 54px;
             margin: 25px auto;
         }
 
-        .music-icon {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-
         .music-decoration {
-            font-size: 38px;
+            font-size: 35px;
             margin: 20px 0;
-        }
-
-        .music-message {
-            margin-top: 20px;
-            line-height: 1.8;
         }
     </style>
 </head>
@@ -47,6 +47,7 @@
     </nav>
 
     <main class="center">
+
         <div class="panel musicbox">
 
             <div class="music-icon">🎧</div>
@@ -65,20 +66,22 @@
                 💿 🎀 ♡ 🎶
             </div>
 
+            <p><strong>Putar lagu spesialmu di sini ♡</strong></p>
+
             <audio
                 class="music-player"
                 controls
                 loop
                 preload="metadata">
                 <source
-                    src="music/lagu-oca.mp3"
+                    src="./music/lagu-oca.mp3"
                     type="audio/mpeg">
-                Browser kamu tidak mendukung pemutar musik.
+                Browser kamu tidak mendukung pemutar audio.
             </audio>
 
-            <p class="music-message">
-                🎶 Tekan tombol play untuk memutar lagu.<br>
-                Semoga lagu ini membuat harimu lebih indah ♡
+            <p class="sub">
+                Tekan ▶ untuk memutar lagu.
+                Semoga harimu selalu penuh kebahagiaan ♡
             </p>
 
             <div class="music-decoration">
@@ -90,6 +93,7 @@
             </a>
 
         </div>
+
     </main>
 
 </body>
