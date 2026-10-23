@@ -9,477 +9,714 @@
     <style>
         * {
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
             margin: 0;
-            padding-bottom: 100px;
             font-family: "Trebuchet MS", Arial, sans-serif;
-            background: #fff0f6;
-            color: #854765;
+            color: #87516b;
+            background: #fff5fa;
         }
 
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: #ffdeeb;
-            padding: 12px 8px;
-            text-align: center;
-            box-shadow: 0 3px 10px #d98db833;
-        }
-
-        .logo {
-            display: block;
-            color: #d94f91;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        nav a {
-            display: inline-block;
-            color: #a83e76;
-            text-decoration: none;
-            padding: 9px 11px;
-            margin: 2px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        nav a:hover,
-        nav a.aktif {
-            background: #ed80b1;
-            color: white;
-        }
-
-        section {
-            min-height: 85vh;
-            padding: 75px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            scroll-margin-top: 100px;
-        }
-
-        .judul {
-            color: #d94f91;
-            font-size: clamp(28px, 5vw, 42px);
-            margin-bottom: 15px;
-        }
-
-        .deskripsi {
-            max-width: 650px;
-            line-height: 1.9;
-            margin-bottom: 25px;
-        }
-
-        .stiker {
-            font-size: 35px;
-            margin: 15px;
-        }
-
-        .kotak {
-            width: 100%;
-            max-width: 750px;
-            padding: 35px 22px;
-            background: #ffffffdd;
-            border: 3px dashed #f3a0c4;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px #d98db833;
-        }
-
-        .nama {
-            color: #e45b9c;
-            font-size: clamp(45px, 9vw, 75px);
-            text-shadow: 3px 3px #ffc5dd;
-            margin: 15px 0;
+        button {
+            font-family: inherit;
+            cursor: pointer;
         }
 
         .tombol {
             display: inline-block;
-            background: #ed80b1;
-            color: white;
+            padding: 13px 23px;
             border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            margin: 5px;
+            border-radius: 30px;
+            background: #ed83b1;
+            color: white;
+            font-size: 15px;
             font-weight: bold;
-            font-size: 14px;
+            box-shadow: 0 5px 0 #d76b9c;
             text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
+            transition: 0.25s;
         }
 
         .tombol:hover {
-            background: #d94f91;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            background: #df6da1;
         }
 
-        /* HOME */
-        #home {
-            background: linear-gradient(135deg, #ffe0ed, #fff5fa);
-        }
+        /* =========================
+           HALAMAN PEMBUKA KAWAII
+        ========================= */
 
-        /* KENANGAN */
-        #kenangan {
-            background: #fff8fb;
-        }
-
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 15px;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .memory-card {
-            padding: 10px;
-            background: white;
-            border: 2px solid #ffd0e3;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px #d98db822;
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
-
-        .memory-card:hover {
-            transform: translateY(-5px) rotate(-1deg);
-        }
-
-        .memory-card img {
-            display: block;
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 13px;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-
-        .memory-card img.ganti {
-            opacity: 0;
-        }
-
-        .caption {
-            color: #bc5287;
-            font-weight: bold;
-        }
-
-        .petunjuk-foto {
-            color: #bc5287;
-            font-size: 13px;
-        }
-
-        /* SURAT DAN AMPLOP */
-        #surat {
-            background: linear-gradient(135deg, #fff0f6, #ffe1ed);
-        }
-
-        .amplop-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0 35px;
-        }
-
-        .amplop {
-            position: relative;
-            width: 280px;
-            height: 190px;
-            padding: 0;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            filter: drop-shadow(0 12px 12px #d98db844);
-            transition: transform 0.3s;
-        }
-
-        .amplop:hover {
-            transform: translateY(-5px);
-        }
-
-        .amplop-belakang {
-            position: absolute;
+        #halamanPembuka {
+            position: fixed;
             inset: 0;
-            background: #ffc6df;
-            border-radius: 12px;
-        }
-
-        .kertas-amplop {
-            position: absolute;
-            z-index: 1;
-            left: 18px;
-            right: 18px;
-            bottom: 12px;
-            height: 145px;
-            background: #fffafc;
-            border: 2px solid #f5b3d0;
-            border-radius: 10px;
+            z-index: 9999;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 38px;
-            color: #d94f91;
-            transition: transform 0.8s ease;
+            padding: 22px 15px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 15% 20%, white 0 4px, transparent 5px),
+                radial-gradient(circle at 85% 75%, white 0 5px, transparent 6px),
+                linear-gradient(135deg, #ffddea, #fff5fa, #ffcfe3);
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        .kertas-amplop span {
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .amplop-badan {
-            position: absolute;
-            z-index: 2;
-            inset: 0;
-            background: #f7a8ca;
-            clip-path: polygon(
-                0 0, 50% 60%, 100% 0,
-                100% 100%, 0 100%
-            );
-            border-radius: 12px;
-            pointer-events: none;
-        }
-
-        .amplop-penutup {
-            position: absolute;
-            z-index: 3;
-            inset: 0;
-            background: #ffdaea;
-            clip-path: polygon(0 0, 100% 0, 50% 58%);
-            transform-origin: top center;
-            transition: transform 0.7s ease, opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .hati-amplop {
-            position: absolute;
-            z-index: 4;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 28px;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .amplop.terbuka .amplop-penutup {
-            transform: rotateX(180deg);
+        #halamanPembuka.sembunyi {
             opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        .amplop.terbuka .kertas-amplop {
-            transform: translateY(-75px);
-        }
-
-        .amplop.terbuka .hati-amplop {
-            opacity: 0;
-        }
-
-        .petunjuk-amplop {
-            color: #c15a8d;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        .surat-terbuka {
-            display: none;
+        .kartu-undangan {
+            position: relative;
             width: 100%;
-            max-width: 680px;
-            flex-direction: column;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .surat-terbuka.muncul {
-            display: flex;
-            animation: suratMuncul 0.8s ease both;
-        }
-
-        .surat-kertas {
-            width: 100%;
-            padding: 28px 24px;
-            background: #fffdf5;
-            border: 2px solid #f6c4d8;
-            border-radius: 12px 25px;
-            text-align: left;
-            line-height: 1.9;
-            box-shadow: 6px 6px 0 #f4b2cf;
-        }
-
-        .surat-kertas h3 {
+            max-width: 440px;
+            margin: auto;
+            padding: 35px 22px 25px;
             text-align: center;
-            color: #d94f91;
+            background: #fffafd;
+            border: 3px solid #ffc1da;
+            border-radius: 35px;
+            box-shadow: 0 0 0 7px #ffffff85,
+                        0 15px 35px #d878a333;
+            animation: kartuDatang 1s ease both;
         }
 
-        .surat-kertas .stiker {
-            text-align: center;
-        }
-
-        .tanda-tangan {
-            text-align: right;
-            color: #d94f91;
-            font-weight: bold;
-        }
-
-        @keyframes suratMuncul {
+        @keyframes kartuDatang {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.96);
+                transform: translateY(25px) scale(0.94);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
         }
 
-        /* MUSIK */
-        #musik {
-            min-height: 65vh;
-            background: #fff8fb;
+        .pita-atas {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
         }
 
-        .musik-card {
+        .stiker-pembuka {
+            margin: 12px 0;
+            font-size: 35px;
+            animation: stikerGoyang 3s ease-in-out infinite;
+        }
+
+        @keyframes stikerGoyang {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .teks-kecil {
+            color: #d46a9b;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        .kartu-undangan h1 {
+            margin: 12px 0 0;
+            color: #d94f91;
+            font-family: Georgia, serif;
+            font-size: clamp(27px, 7vw, 37px);
+        }
+
+        .kartu-undangan h2 {
+            color: #ee85b4;
+            font-family: Georgia, serif;
+            font-size: 30px;
+            margin: 5px 0 15px;
+        }
+
+        .pesan-pembuka {
+            color: #99617c;
+            font-size: 14px;
+            line-height: 1.9;
+            margin: 12px auto 22px;
+        }
+
+        .pesan-pembuka strong {
+            color: #d94f91;
+        }
+
+        /* Amplop pembuka */
+
+        .amplop-pembuka {
+            position: relative;
+            width: 175px;
+            height: 120px;
+            margin: 25px auto 15px;
+            cursor: pointer;
+            animation: amplopMengambang 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 9px 8px #d878a344);
+        }
+
+        @keyframes amplopMengambang {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .amplop-dasar {
+            position: absolute;
+            inset: 0;
+            background: #f9a8ca;
+            border: 2px solid #f18db8;
+            border-radius: 9px;
+        }
+
+        .surat-mini {
+            position: absolute;
+            z-index: 1;
+            left: 20px;
+            right: 20px;
+            top: -5px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fffafc;
+            border: 2px solid #ffc5dc;
+            border-radius: 8px;
+            font-size: 37px;
+            transition: transform 0.7s ease;
+        }
+
+        .amplop-depan {
+            position: absolute;
+            z-index: 2;
+            inset: 0;
+            background: #f7a0c4;
+            clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%);
+            border-radius: 8px;
+        }
+
+        .amplop-segitiga {
+            position: absolute;
+            z-index: 3;
+            inset: 0;
+            background: #ffcee2;
+            clip-path: polygon(0 0, 100% 0, 50% 58%);
+            transform-origin: top center;
+            transition: transform 0.65s ease, opacity 0.3s ease;
+        }
+
+        .segel-hati {
+            position: absolute;
+            z-index: 4;
+            left: 50%;
+            top: 54%;
+            transform: translate(-50%, -50%);
+            font-size: 27px;
+            transition: opacity 0.3s ease;
+        }
+
+        .amplop-pembuka.terbuka .amplop-segitiga {
+            transform: rotateX(180deg);
+            opacity: 0;
+        }
+
+        .amplop-pembuka.terbuka .surat-mini {
+            transform: translateY(-48px);
+        }
+
+        .amplop-pembuka.terbuka .segel-hati {
+            opacity: 0;
+        }
+
+        .petunjuk-pembuka {
+            color: #bd6590;
+            font-size: 12px;
+            margin: 18px 0;
+        }
+
+        .tombol-pembuka {
             width: 100%;
-            max-width: 520px;
-            padding: 28px 20px;
-            background: white;
-            border: 2px solid #ffd0e3;
-            border-radius: 28px;
+            max-width: 245px;
+            padding: 15px 20px;
+            color: white;
+            font-size: 15px;
+            background: linear-gradient(135deg, #f18ab7, #d94f91);
+            border: 3px solid #ffe0ed;
+            box-shadow: 0 5px 0 #d979a4;
+            animation: tombolBerkedip 2s ease-in-out infinite;
         }
 
-        .piringan {
-            font-size: 75px;
-            margin: 15px;
-            animation: putar 8s linear infinite;
+        @keyframes tombolBerkedip {
+            0%, 100% { box-shadow: 0 5px 0 #d979a4; }
+            50% {
+                box-shadow: 0 5px 0 #d979a4,
+                            0 0 15px #f6a4c9;
+            }
         }
 
-        @keyframes putar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .footer-pembuka {
+            margin: 22px 0 0;
+            color: #ce81a4;
+            font-size: 11px;
         }
 
-        /* KEJUTAN */
-        #kejutan {
-            background: linear-gradient(135deg, #ffdbea, #fff0f6);
+        .dekorasi {
+            position: absolute;
+            z-index: 1;
+            font-size: clamp(35px, 8vw, 60px);
+            pointer-events: none;
+            animation: dekorasiGoyang 4s ease-in-out infinite;
         }
 
-        #pesanKejutan {
-            display: none;
-            margin-top: 22px;
-            padding: 20px;
+        .dekorasi-kiri {
+            top: 8%;
+            left: 7%;
+        }
+
+        .dekorasi-kanan {
+            top: 12%;
+            right: 7%;
+            animation-delay: 0.8s;
+        }
+
+        .dekorasi-bawah-kiri {
+            bottom: 7%;
+            left: 7%;
+            animation-delay: 1.2s;
+        }
+
+        .dekorasi-bawah-kanan {
+            bottom: 8%;
+            right: 7%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes dekorasiGoyang {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -10px; }
+        }
+
+        .hati-melayang {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            animation: hatiNaik 6s ease-in-out infinite;
+        }
+
+        .hati-satu {
+            left: 17%;
+            top: 35%;
+            font-size: 24px;
+        }
+
+        .hati-dua {
+            right: 15%;
+            top: 43%;
+            font-size: 27px;
+            animation-delay: 1s;
+        }
+
+        .hati-tiga {
+            left: 22%;
+            bottom: 24%;
+            font-size: 34px;
+            animation-delay: 2s;
+        }
+
+        .hati-empat {
+            right: 23%;
+            bottom: 22%;
+            font-size: 20px;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes hatiNaik {
+            0%, 100% {
+                transform: translateY(0) rotate(-10deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           MENU WEBSITE UTAMA
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 14px 10px;
+            background: #fff5faee;
+            border-bottom: 2px solid #ffdae9;
+            backdrop-filter: blur(10px);
+        }
+
+        .nama-website {
+            margin: 0 0 10px;
+            color: #d94f91;
+            text-align: center;
+            font-size: 21px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        nav a {
+            padding: 8px 12px;
+            color: #b54e81;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
             border-radius: 20px;
-            background: #fff0f6;
+        }
+
+        nav a:hover,
+        nav a.aktif {
+            background: #ffd6e8;
+            color: #c33e7f;
+        }
+
+        /* =========================
+           BAGIAN WEBSITE
+        ========================= */
+
+        section {
+            padding: 65px 20px;
+            text-align: center;
+            scroll-margin-top: 105px;
+        }
+
+        .judul-bagian {
+            color: #d94f91;
+            font-family: Georgia, serif;
+            font-size: clamp(27px, 6vw, 36px);
+            margin: 0 0 15px;
+        }
+
+        .deskripsi-bagian {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        #home {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(145deg, #ffe2ef, #fff7fb);
+        }
+
+        .mahkota {
+            font-size: 65px;
+            animation: stikerGoyang 3s infinite;
+        }
+
+        #home h1 {
+            margin: 15px 0;
+            color: #d94f91;
+            font-family: Georgia, serif;
+            font-size: clamp(36px, 8vw, 60px);
+        }
+
+        #home p {
+            max-width: 550px;
             line-height: 1.9;
         }
 
-        #pesanKejutan.muncul {
-            display: block;
-            animation: suratMuncul 0.8s ease both;
+        .bintang {
+            color: #ec8cb8;
+            font-size: 25px;
+            margin: 15px;
         }
 
-        /* PEMUTAR MUSIK TETAP */
-        .pemutar-tetap {
-            position: fixed;
-            right: 12px;
-            bottom: 12px;
-            z-index: 100;
-            width: min(330px, calc(100vw - 24px));
+        #kenangan {
+            background: #fffafd;
+        }
+
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .kartu-foto {
             padding: 12px;
-            background: #fff7fb;
-            border: 2px solid #f3a0c4;
+            background: white;
+            border: 2px solid #ffdaea;
             border-radius: 20px;
-            box-shadow: 0 5px 20px #9e477733;
+            box-shadow: 0 7px 18px #d878a31a;
+            transform: rotate(-1deg);
         }
 
-        .pemutar-tetap p {
-            margin: 0 0 5px;
-            color: #bd4b83;
-            font-size: 13px;
+        .kartu-foto:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .kartu-foto img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 13px;
+            background: #ffe7f1;
+        }
+
+        .kartu-foto p {
+            margin: 12px 0 4px;
+            color: #cb6595;
             font-weight: bold;
         }
 
-        audio {
+        #surat {
+            background: #ffeaf3;
+        }
+
+        .kotak-surat {
+            max-width: 600px;
+            margin: 25px auto 0;
+        }
+
+        .amplop-surat {
+            width: 180px;
+            height: 120px;
+            position: relative;
+            margin: 35px auto 25px;
+            cursor: pointer;
+            background: #f5a5c7;
+            border: 2px solid #e98db6;
+            border-radius: 8px;
+            box-shadow: 0 8px 18px #ce7fa333;
+        }
+
+        .amplop-surat::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #ffd0e3;
+            clip-path: polygon(0 0, 100% 0, 50% 60%);
+            transform-origin: top;
+            transition: transform 0.7s;
+            z-index: 2;
+        }
+
+        .amplop-surat::after {
+            content: "💌";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .amplop-surat.terbuka::before {
+            transform: rotateX(180deg);
+        }
+
+        .isi-surat {
+            display: none;
+            padding: 25px;
+            background: #fffafd;
+            border: 2px dashed #f2a2c5;
+            border-radius: 20px;
+            text-align: left;
+            line-height: 1.9;
+            animation: kartuDatang 0.7s ease;
+        }
+
+        .isi-surat.tampil {
             display: block;
+        }
+
+        #musik {
+            background: #fffafd;
+        }
+
+        .kotak-musik {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 25px;
+            background: #ffe5f0;
+            border: 2px solid #ffc6de;
+            border-radius: 25px;
+        }
+
+        .ikon-musik {
+            font-size: 50px;
+            animation: stikerGoyang 2s infinite;
+        }
+
+        audio {
             width: 100%;
             margin-top: 15px;
         }
 
-        .pemutar-tetap audio {
-            margin: 0;
+        #kejutan {
+            min-height: 400px;
+            background: linear-gradient(135deg, #ffddea, #fff4fa);
         }
 
-        /* HATI MELAYANG */
-        .hati {
-            position: fixed;
-            bottom: -35px;
-            z-index: 0;
-            pointer-events: none;
-            animation: terbang 8s linear forwards;
+        .kotak-kejutan {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px;
+            background: #ffffffc9;
+            border: 2px dashed #f4a5c7;
+            border-radius: 25px;
         }
 
-        @keyframes terbang {
-            from {
-                transform: translateY(0) rotate(0);
-                opacity: 0.8;
-            }
+        .hadiah {
+            display: none;
+            margin-top: 25px;
+            font-size: 20px;
+            line-height: 1.9;
+            color: #d94f91;
+            animation: kartuDatang 0.7s ease;
+        }
 
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
+        .hadiah.tampil {
+            display: block;
+        }
+
+        .hati-kejutan {
+            display: inline-block;
+            margin: 5px;
+            font-size: 27px;
+            animation: hatiNaik 2s infinite;
         }
 
         footer {
-            padding: 25px;
+            padding: 25px 15px;
+            background: #fbd5e6;
+            color: #a7547e;
             text-align: center;
-            background: #ffdbea;
-            line-height: 1.8;
+            font-size: 13px;
         }
 
-        @media (max-width: 550px) {
-            nav a {
-                padding: 7px 8px;
-                font-size: 12px;
+        /* Pemutar musik tetap di bawah */
+
+        .pemutar-tetap {
+            position: fixed;
+            z-index: 200;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #fffafdF2;
+            border: 2px solid #ffc5dc;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px #b95d8522;
+        }
+
+        .pemutar-ikon {
+            font-size: 25px;
+        }
+
+        .pemutar-info {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+        }
+
+        .pemutar-info strong {
+            display: block;
+            color: #c94e88;
+            font-size: 12px;
+        }
+
+        .pemutar-info span {
+            color: #a66b88;
+            font-size: 11px;
+        }
+
+        .pemutar-tetap audio {
+            width: 42%;
+            max-width: 220px;
+            margin: 0;
+        }
+
+        body {
+            padding-bottom: 90px;
+        }
+
+        @media (max-width: 480px) {
+            .dekorasi-kiri {
+                top: 2%;
+                left: 2%;
             }
 
-            section {
-                padding: 60px 15px;
+            .dekorasi-kanan {
+                top: 3%;
+                right: 2%;
             }
 
-            .memory-grid {
-                gap: 8px;
+            .dekorasi-bawah-kiri {
+                bottom: 2%;
+                left: 2%;
             }
 
-            .memory-card {
+            .dekorasi-bawah-kanan {
+                bottom: 2%;
+                right: 2%;
+            }
+
+            .kartu-undangan {
+                padding: 32px 18px 22px;
+            }
+
+            .galeri {
+                gap: 10px;
+            }
+
+            .kartu-foto {
                 padding: 7px;
             }
 
-            .memory-card img {
-                height: 155px;
-            }
-
-            .caption {
-                font-size: 12px;
-            }
-
-            .surat-kertas {
-                padding: 20px 16px;
-            }
-
             .pemutar-tetap {
-                right: 8px;
-                bottom: 8px;
-                width: calc(100vw - 16px);
+                left: 6px;
+                right: 6px;
+                bottom: 6px;
+                gap: 7px;
+                padding: 9px;
+            }
+
+            .pemutar-ikon {
+                font-size: 21px;
+            }
+
+            .pemutar-info strong {
+                font-size: 10px;
+            }
+
+            .pemutar-info span {
+                font-size: 9px;
+            }
+
+            .pemutar-tetap audio {
+                width: 45%;
             }
         }
     </style>
@@ -487,393 +724,450 @@
 
 <body>
 
-    <!-- MENU NAVIGASI -->
-    <nav>
-        <span class="logo">🎀 Little Birthday World 🎀</span>
-        <a href="#home" class="aktif">🏠 Home</a>
-        <a href="#kenangan">📸 Kenangan</a>
-        <a href="#surat">💌 Surat</a>
-        <a href="#musik">🎵 Musik</a>
-        <a href="#kejutan">🎁 Kejutan</a>
-    </nav>
+    <!-- =========================
+         HALAMAN PEMBUKA
+    ========================= -->
 
-    <!-- HOME -->
-    <section id="home">
-        <div class="kotak">
-            <div class="stiker">🎂 🧸 🎀 🐰</div>
-            <p>♡ A special day for someone special ♡</p>
+    <div id="halamanPembuka">
+        <div class="dekorasi dekorasi-kiri">🎀</div>
+        <div class="dekorasi dekorasi-kanan">🌷</div>
+        <div class="dekorasi dekorasi-bawah-kiri">🧸</div>
+        <div class="dekorasi dekorasi-bawah-kanan">💗</div>
 
-            <h1 class="judul">Happy Birthday!</h1>
-            <div class="nama">Oca 💗</div>
+        <div class="hati-melayang hati-satu">💕</div>
+        <div class="hati-melayang hati-dua">💖</div>
+        <div class="hati-melayang hati-tiga">♡</div>
+        <div class="hati-melayang hati-empat">💗</div>
 
-            <p class="deskripsi">
+        <div class="kartu-undangan">
+            <div class="pita-atas">🎀</div>
+            <div class="stiker-pembuka">🧸 🌸 🐰</div>
+
+            <p class="teks-kecil">♡ YOU ARE INVITED TO ♡</p>
+            <h1>A Little Surprise</h1>
+            <h2>for Oca 💗</h2>
+
+            <p class="pesan-pembuka">
+                Ada hadiah kecil yang sudah disiapkan
+                khusus untuk seseorang yang spesial.
+                <br>
+                <strong>That someone is YOU! 🌷</strong>
+            </p>
+
+            <div class="amplop-pembuka"
+                 id="amplopPembuka"
+                 role="button"
+                 tabindex="0"
+                 aria-label="Buka amplop"
+                 onclick="bukaUndangan()">
+                <div class="amplop-dasar"></div>
+                <div class="surat-mini">💌</div>
+                <div class="amplop-depan"></div>
+                <div class="amplop-segitiga"></div>
+                <div class="segel-hati">💗</div>
+            </div>
+
+            <p class="petunjuk-pembuka" id="petunjukPembuka">
+                Psst... ada sesuatu di dalam amplop! 🤫
+            </p>
+
+            <button class="tombol tombol-pembuka"
+                    id="tombolBukaHadiah"
+                    onclick="bukaUndangan()">
+                Open Your Gift 💝
+            </button>
+
+            <p class="footer-pembuka">
+                Made with love, just for you ♡
+            </p>
+        </div>
+    </div>
+
+    <!-- =========================
+         MENU WEBSITE UTAMA
+    ========================= -->
+
+    <header>
+        <h2 class="nama-website">🎀 Birthday Oca 🎀</h2>
+
+        <nav>
+            <a href="#home" class="aktif">Home 🏠</a>
+            <a href="#kenangan">Kenangan 📸</a>
+            <a href="#surat">Surat 💌</a>
+            <a href="#musik">Musik 🎵</a>
+            <a href="#kejutan">Kejutan 🎁</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME -->
+
+        <section id="home">
+            <div class="mahkota">👑</div>
+            <div class="bintang">✨ ♡ ✨</div>
+
+            <h1>Happy Birthday! Oca 💗</h1>
+
+            <p>
                 Selamat ulang tahun, Oca!
-                Semoga hari-harimu dipenuhi kebahagiaan,
-                cinta, tawa, dan banyak hal baik.
-                Semoga semua impianmu bisa terwujud. 🌷
+                Semoga hari-harimu selalu dipenuhi kebahagiaan,
+                tawa, cinta, dan hal-hal indah.
+                Semoga semua impianmu satu per satu menjadi nyata.
+                Kamu pantas mendapatkan banyak kebahagiaan. 🌷
             </p>
 
-            <div class="stiker">🌸 🍰 💕 🦢</div>
-
-            <a href="#kenangan" class="tombol">Lihat Kenangan ♡</a>
-            <a href="#kejutan" class="tombol">Buka Kejutan 🎁</a>
-        </div>
-    </section>
-
-    <!-- KENANGAN: 4 KOTAK, 8 FOTO BERGANTIAN -->
-    <section id="kenangan">
-        <h2 class="judul">Our Little Memories 📸</h2>
-
-        <p class="deskripsi">
-            Kumpulan foto kenangan manis untuk Oca. 💕
-            Tunggu sebentar untuk melihat foto lainnya!
-        </p>
-
-        <div class="memory-grid">
-            <div class="memory-card">
-                <img src="images/foto1.jpg" alt="Foto kenangan 1">
-                <p class="caption">🌸 Sweet Memory #1</p>
-            </div>
-
-            <div class="memory-card">
-                <img src="images/foto2.jpg" alt="Foto kenangan 2">
-                <p class="caption">🎀 Sweet Memory #2</p>
-            </div>
-
-            <div class="memory-card">
-                <img src="images/foto3.jpg" alt="Foto kenangan 3">
-                <p class="caption">🧸 Sweet Memory #3</p>
-            </div>
-
-            <div class="memory-card">
-                <img src="images/foto4.jpg" alt="Foto kenangan 4">
-                <p class="caption">🌷 Sweet Memory #4</p>
-            </div>
-        </div>
-
-        <p class="petunjuk-foto">
-            
-        </p>
-    </section>
-
-    <!-- SURAT DENGAN AMPLOP -->
-    <section id="surat">
-        <h2 class="judul">A Little Letter for You 💌</h2>
-
-        <p class="deskripsi">
-            Ada surat kecil yang aku buat khusus untuk Oca.
-            Klik amplopnya untuk membuka suratnya, ya! 🎀
-        </p>
-
-        <div class="amplop-area">
-            <button
-                type="button"
-                class="amplop"
-                id="tombolAmplop"
-                onclick="bukaSurat()"
-                aria-label="Buka surat untuk Oca"
-                aria-expanded="false"
-            >
-                <span class="amplop-belakang"></span>
-
-                <span class="kertas-amplop">
-                    💌
-                    <span>For Oca ♡</span>
-                </span>
-
-                <span class="amplop-badan"></span>
-                <span class="amplop-penutup"></span>
-                <span class="hati-amplop">💗</span>
-            </button>
-
-            <p class="petunjuk-amplop" id="petunjukAmplop">
-                ♡ Klik amplop untuk membuka ♡
-            </p>
-        </div>
-
-        <div class="surat-terbuka" id="suratTerbuka" aria-hidden="true">
-            <div class="surat-kertas">
-                <div class="stiker">🌷 🎀 🧸</div>
-
-                <h3>To My Special Person 💗</h3>
-
-                <p>Dear Oca, 🌸</p>
-
-                <p>
-                    Happy birthday, yaa! Semoga Oca selalu sehat,
-                    bahagia, dan dikelilingi orang-orang yang tulus
-                    menyayangi Oca.
-                </p>
-
-                <p>
-                    Semoga semua impian Oca bisa terwujud satu per satu.
-                    Kalau suatu hari terasa melelahkan, jangan lupa
-                    beristirahat dan jangan terlalu keras pada diri sendiri.
-                </p>
-
-                <p>
-                    Semoga tahun ini membawa banyak cerita indah,
-                    kesempatan baru, dan banyak alasan untuk tersenyum.
-                    Kamu pantas mendapatkan kebahagiaan. 💕
-                </p>
-
-                <p>
-                    Sekali lagi, happy birthday, Oca!
-                    Semoga hari ini menjadi salah satu kenangan
-                    manis yang selalu kamu ingat. 🎂
-                </p>
-
-                <p class="tanda-tangan">
-                    With lots of love, ♡<br>
-                    Someone who wishes you the best 💌
-                </p>
-            </div>
-
-            <button type="button" class="tombol" onclick="tutupSurat()">
-                💌 Masukkan kembali ke amplop
-            </button>
-        </div>
-    </section>
-
-    <!-- MUSIK -->
-    <section id="musik">
-        <h2 class="judul">A Song for You 🎵</h2>
-
-        <div class="musik-card">
-            <div class="piringan">💿</div>
-
-            <h3>Our Birthday Playlist 💗</h3>
-
-            <p class="deskripsi">
-                Lagu ini aku pilih khusus untuk kamu, Oca. 💗
-                Semoga setiap nada bisa membuat harimu lebih indah
-                dan mengingatkanmu bahwa kamu sangat spesial. 🎀🎧
-            </p>
-        </div>
-    </section>
-
-    <!-- KEJUTAN -->
-    <section id="kejutan">
-        <div class="kotak">
-            <div class="stiker">🎁 🧸 🎂 🎀</div>
-
-            <h2 class="judul">One Last Surprise! 💝</h2>
-
-            <p class="deskripsi">
-                Ada kejutan kecil yang menunggu Oca.
-                Coba buka hadiahnya! 🤭
+            <p>
+                Hari ini adalah hari spesial untuk seseorang
+                yang juga spesial. Jangan lupa tersenyum, ya! 🧸
             </p>
 
-            <button class="tombol" onclick="bukaKejutan()">
-                Buka Hadiahmu! 🎁
-            </button>
+            <a href="#kenangan" class="tombol">Lihat Kenangan 💕</a>
 
-            <div id="pesanKejutan">
-                <div class="stiker">🎉 💗 🌷 🎂</div>
+            <div class="bintang">🎂 🎀 💖 🎀 🎂</div>
+        </section>
 
-                <h2 style="color:#d94f91">
-                    HAPPY BIRTHDAY, OCA! 🥳
-                </h2>
+        <!-- KENANGAN -->
 
-                <p>
-                    Semoga Oca selalu diberikan kesehatan,
-                    hati yang tenang, rezeki yang lancar,
-                    dan kebahagiaan yang tidak ada habisnya.
-                </p>
+        <section id="kenangan">
+            <h2 class="judul-bagian">Our Little Memories 📸</h2>
 
-                <p>
-                    Teruslah menjadi diri sendiri dan jangan
-                    menyerah mengejar impianmu. Kamu berharga,
-                    kamu istimewa, dan kamu pantas bahagia. 💗
-                </p>
+            <p class="deskripsi-bagian">
+                Potongan-potongan kenangan yang manis.
+                Setiap foto punya cerita dan keindahannya sendiri. 💗
+            </p>
 
-                <div class="stiker">🧁 🐰 💐 💌 🧸</div>
+            <div class="galeri">
+                <div class="kartu-foto">
+                    <img src="images/foto1.jpg"
+                         alt="Kenangan pertama"
+                         class="foto-berganti"
+                         data-nomor="1">
+                    <p>♡ Sweet Memory 1 ♡</p>
+                </div>
 
-                <strong>
-                    You deserve all the happiness in the world! ♡
-                </strong>
+                <div class="kartu-foto">
+                    <img src="images/foto2.jpg"
+                         alt="Kenangan kedua"
+                         class="foto-berganti"
+                         data-nomor="2">
+                    <p>♡ Sweet Memory 2 ♡</p>
+                </div>
+
+                <div class="kartu-foto">
+                    <img src="images/foto3.jpg"
+                         alt="Kenangan ketiga"
+                         class="foto-berganti"
+                         data-nomor="3">
+                    <p>♡ Sweet Memory 3 ♡</p>
+                </div>
+
+                <div class="kartu-foto">
+                    <img src="images/foto4.jpg"
+                         alt="Kenangan keempat"
+                         class="foto-berganti"
+                         data-nomor="4">
+                    <p>♡ Sweet Memory 4 ♡</p>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- FOOTER -->
+            <p class="deskripsi-bagian" style="margin-top:25px;">
+                Foto-foto berganti otomatis setiap beberapa detik. 🎀
+            </p>
+        </section>
+
+        <!-- SURAT -->
+
+        <section id="surat">
+            <h2 class="judul-bagian">A Little Letter for You 💌</h2>
+
+            <p class="deskripsi-bagian">
+                Ada surat kecil yang ingin disampaikan.
+                Klik amplopnya untuk membuka surat. 🌸
+            </p>
+
+            <div class="kotak-surat">
+                <div class="amplop-surat"
+                     id="amplopSurat"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Buka surat"
+                     onclick="bukaSurat()">
+                </div>
+
+                <button class="tombol" onclick="bukaSurat()">
+                    Buka Surat 💗
+                </button>
+
+                <div class="isi-surat" id="isiSurat">
+                    <h3 style="color:#d94f91; text-align:center;">
+                        Dear Oca, ♡
+                    </h3>
+
+                    <p>
+                        Happy birthday, Oca! 🎂💗
+                    </p>
+
+                    <p>
+                        Di hari spesialmu ini, aku berharap kamu
+                        selalu dikelilingi hal-hal baik, orang-orang
+                        yang tulus menyayangimu, dan alasan untuk
+                        terus tersenyum setiap hari.
+                    </p>
+
+                    <p>
+                        Semoga langkahmu ke depan selalu dimudahkan,
+                        impianmu semakin dekat, dan kamu selalu
+                        diberi kekuatan saat menghadapi hari yang
+                        tidak mudah.
+                    </p>
+
+                    <p>
+                        Terima kasih sudah menjadi dirimu sendiri.
+                        Semoga tahun ini membawa banyak cerita indah,
+                        pengalaman baru, dan kebahagiaan yang tidak
+                        terduga.
+                    </p>
+
+                    <p>
+                        Jangan lupa bahagia, jaga diri baik-baik,
+                        dan tetap jadi Oca yang istimewa. 🧸🌷
+                    </p>
+
+                    <p style="text-align:right;">
+                        With lots of love,<br>
+                        Someone who wishes you the best ♡
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUSIK -->
+
+        <section id="musik">
+            <h2 class="judul-bagian">A Song for You 🎵</h2>
+
+            <p class="deskripsi-bagian">
+                Sebuah lagu untuk menemani hari spesial Oca.
+                Putar lagu dan nikmati momennya. 🎧
+            </p>
+
+            <div class="kotak-musik">
+                <div class="ikon-musik">🎧🎀🎶</div>
+                <h3 style="color:#d94f91;">Your Special Song</h3>
+
+                <p>
+                    Lagu kecil dengan harapan yang besar. 💕
+                </p>
+
+                <p>
+                    Pemutar lagu juga tersedia di bagian bawah
+                    layar, jadi kamu bisa berpindah menu tanpa
+                    menghentikan lagu secara sengaja.
+                </p>
+            </div>
+        </section>
+
+        <!-- KEJUTAN -->
+
+        <section id="kejutan">
+            <h2 class="judul-bagian">One Last Surprise! 🎁</h2>
+
+            <p class="deskripsi-bagian">
+                Sebelum selesai, masih ada satu hadiah kecil
+                yang menunggumu. Siap membukanya? 🤭
+            </p>
+
+            <div class="kotak-kejutan">
+                <div style="font-size:65px;">🎁</div>
+
+                <button class="tombol" onclick="bukaKejutan()">
+                    Buka Kejutan 💝
+                </button>
+
+                <div class="hadiah" id="hadiah">
+                    <div class="hati-kejutan">💗</div>
+                    <div class="hati-kejutan">💖</div>
+                    <div class="hati-kejutan">💕</div>
+
+                    <h3>Surprise, Oca! 🎉</h3>
+
+                    <p>
+                        HAPPY BIRTHDAY! 🎂
+                    </p>
+
+                    <p>
+                        Semoga kamu selalu bahagia, sehat,
+                        dikelilingi cinta, dan mendapatkan
+                        banyak hal baik dalam hidup.
+                    </p>
+
+                    <p>
+                        May all your wishes come true! 🌷
+                    </p>
+
+                    <div style="font-size:40px;">
+                        🧸 🎀 🌸 💝 🌸 🎀 🧸
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>Made with 💗, love, and a little bit of magic ✨</p>
-        <p>Specially made for Oca 🎀</p>
+        Made with 💗 especially for Oca
+        <br>
+        Happy Birthday! 🎂🎀
     </footer>
 
     <!-- PEMUTAR MUSIK TETAP -->
-    <div class="pemutar-tetap">
-        <p>🎵 Lagu spesial untuk Oca 💗</p>
 
-        <audio id="laguOca" controls loop preload="auto">
+    <div class="pemutar-tetap">
+        <div class="pemutar-ikon">🎵</div>
+
+        <div class="pemutar-info">
+            <strong>Song for Oca 💗</strong>
+            <span>Made with love ♡</span>
+        </div>
+
+        <audio id="laguOca" controls preload="metadata">
             <source src="music/lagu-oca.mp3" type="audio/mpeg">
-            Browser kamu tidak mendukung pemutar musik.
+            Browser kamu tidak mendukung pemutar audio.
         </audio>
     </div>
 
     <script>
-        // Navigasi tanpa memuat ulang halaman
-        document.querySelectorAll('nav a, a.tombol[href^="#"]').forEach(
-            function(link) {
-                link.addEventListener("click", function(event) {
-                    var id = this.getAttribute("href");
-                    var tujuan = document.querySelector(id);
+        /* =========================
+           BUKA HALAMAN PEMBUKA
+        ========================= */
 
-                    if (tujuan) {
+        var undanganSedangDibuka = false;
+
+        function bukaUndangan() {
+            if (undanganSedangDibuka) {
+                return;
+            }
+
+            undanganSedangDibuka = true;
+
+            var halaman = document.getElementById("halamanPembuka");
+            var amplop = document.getElementById("amplopPembuka");
+            var tombol = document.getElementById("tombolBukaHadiah");
+            var petunjuk = document.getElementById("petunjukPembuka");
+
+            amplop.classList.add("terbuka");
+            tombol.textContent = "Your Surprise Awaits! 💗";
+            petunjuk.textContent = "Yay! Hadiah untuk Oca sedang dibuka... 🎀";
+
+            setTimeout(function() {
+                halaman.classList.add("sembunyi");
+
+                setTimeout(function() {
+                    halaman.style.display = "none";
+
+                    document.getElementById("home").scrollIntoView({
+                        behavior: "auto",
+                        block: "start"
+                    });
+
+                    history.replaceState(null, "", "#home");
+                }, 800);
+            }, 900);
+        }
+
+        document.getElementById("amplopPembuka").addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    bukaUndangan();
+                }
+            }
+        );
+
+        /* =========================
+           NAVIGASI TANPA RELOAD
+        ========================= */
+
+        var semuaMenu = document.querySelectorAll("nav a");
+
+        semuaMenu.forEach(function(menu) {
+            menu.addEventListener("click", function(event) {
+                var tujuan = menu.getAttribute("href");
+
+                if (tujuan && tujuan.charAt(0) === "#") {
+                    var bagian = document.querySelector(tujuan);
+
+                    if (bagian) {
                         event.preventDefault();
 
-                        tujuan.scrollIntoView({
+                        bagian.scrollIntoView({
                             behavior: "smooth",
                             block: "start"
                         });
 
-                        history.replaceState(null, "", id);
+                        history.replaceState(null, "", tujuan);
+
+                        semuaMenu.forEach(function(item) {
+                            item.classList.remove("aktif");
+                        });
+
+                        menu.classList.add("aktif");
                     }
-                });
-            }
-        );
-
-        // Menandai menu yang sedang dilihat
-        var bagianHalaman = document.querySelectorAll("section");
-        var menuNavigasi = document.querySelectorAll("nav a");
-
-        window.addEventListener("scroll", function() {
-            var bagianAktif = "";
-
-            bagianHalaman.forEach(function(bagian) {
-                var posisi = bagian.getBoundingClientRect();
-
-                if (posisi.top <= 180 && posisi.bottom > 180) {
-                    bagianAktif = bagian.id;
                 }
-            });
-
-            menuNavigasi.forEach(function(menu) {
-                menu.classList.toggle(
-                    "aktif",
-                    menu.getAttribute("href") === "#" + bagianAktif
-                );
             });
         });
 
-        // DAFTAR 8 FOTO
-        var daftarFoto = [
-            "images/foto1.jpg",
-            "images/foto2.jpg",
-            "images/foto3.jpg",
-            "images/foto4.jpg",
-            "images/foto5.jpg",
-            "images/foto6.jpg",
-            "images/foto7.jpg",
-            "images/foto8.jpg"
-        ];
+        /* =========================
+           FOTO BERGANTI OTOMATIS
+        ========================= */
 
-        // Foto yang sedang digunakan setiap kotak
-        var nomorFoto = [0, 1, 2, 3];
+        var fotoSedangTampil = [1, 2, 3, 4];
 
-        // Ganti foto setiap 4 detik
         setInterval(function() {
-            var kotakFoto = document.querySelectorAll(".memory-card img");
+            var semuaFoto = document.querySelectorAll(".foto-berganti");
 
-            for (var i = 0; i < kotakFoto.length; i++) {
-                nomorFoto[i] = (nomorFoto[i] + 4) % daftarFoto.length;
+            semuaFoto.forEach(function(foto, indeks) {
+                fotoSedangTampil[indeks]++;
 
-                kotakFoto[i].classList.add("ganti");
+                if (fotoSedangTampil[indeks] > 8) {
+                    fotoSedangTampil[indeks] = 1;
+                }
 
-                (function(gambar, nomor) {
-                    setTimeout(function() {
-                        gambar.src = daftarFoto[nomor];
-
-                        gambar.onload = function() {
-                            gambar.classList.remove("ganti");
-                        };
-
-                        gambar.onerror = function() {
-                            gambar.classList.remove("ganti");
-                            console.log("Foto tidak ditemukan: " + gambar.src);
-                        };
-                    }, 500);
-                })(kotakFoto[i], nomorFoto[i]);
-            }
+                foto.src = "images/foto" +
+                    fotoSedangTampil[indeks] + ".jpg";
+            });
         }, 4000);
 
-        // Membuka amplop dan menampilkan surat
+        /* =========================
+           BUKA SURAT
+        ========================= */
+
         function bukaSurat() {
-            var amplop = document.getElementById("tombolAmplop");
-            var surat = document.getElementById("suratTerbuka");
-            var petunjuk = document.getElementById("petunjukAmplop");
+            var amplop = document.getElementById("amplopSurat");
+            var surat = document.getElementById("isiSurat");
 
-            amplop.classList.add("terbuka");
-            amplop.setAttribute("aria-expanded", "true");
-
-            petunjuk.textContent = "💗 Surat khusus untuk Oca 💗";
-
-            setTimeout(function() {
-                surat.classList.add("muncul");
-                surat.setAttribute("aria-hidden", "false");
-            }, 500);
+            amplop.classList.toggle("terbuka");
+            surat.classList.toggle("tampil");
         }
 
-        // Menutup surat kembali
-        function tutupSurat() {
-            var amplop = document.getElementById("tombolAmplop");
-            var surat = document.getElementById("suratTerbuka");
-            var petunjuk = document.getElementById("petunjukAmplop");
-
-            surat.classList.remove("muncul");
-            surat.setAttribute("aria-hidden", "true");
-
-            amplop.classList.remove("terbuka");
-            amplop.setAttribute("aria-expanded", "false");
-
-            petunjuk.textContent = "♡ Klik amplop untuk membuka ♡";
-
-            document.getElementById("surat").scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-
-        // Membuka kejutan
-        function bukaKejutan() {
-            var pesan = document.getElementById("pesanKejutan");
-
-            pesan.classList.add("muncul");
-
-            pesan.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-            for (var i = 0; i < 12; i++) {
-                setTimeout(buatHati, i * 150);
+        document.getElementById("amplopSurat").addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    bukaSurat();
+                }
             }
+        );
+
+        /* =========================
+           BUKA KEJUTAN
+        ========================= */
+
+        function bukaKejutan() {
+            var hadiah = document.getElementById("hadiah");
+            hadiah.classList.toggle("tampil");
         }
-
-        // Hati yang melayang
-        function buatHati() {
-            var hati = document.createElement("div");
-            hati.className = "hati";
-
-            var pilihan = ["💗", "💕", "🎀", "🌸", "💖"];
-
-            hati.textContent = pilihan[
-                Math.floor(Math.random() * pilihan.length)
-            ];
-
-            hati.style.left = Math.random() * 100 + "vw";
-            hati.style.fontSize = (18 + Math.random() * 20) + "px";
-            hati.style.animationDuration = (5 + Math.random() * 4) + "s";
-
-            document.body.appendChild(hati);
-
-            setTimeout(function() {
-                hati.remove();
-            }, 10000);
-        }
-
-        setInterval(buatHati, 1000);
     </script>
 
 </body>
