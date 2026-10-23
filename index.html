@@ -145,6 +145,7 @@
             border-radius: 20px;
             box-shadow: 0 5px 15px #d98db822;
             transition: transform 0.3s;
+            overflow: hidden;
         }
 
         .memory-card:hover {
@@ -157,11 +158,22 @@
             height: 220px;
             object-fit: cover;
             border-radius: 13px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .memory-card img.ganti {
+            opacity: 0;
         }
 
         .caption {
             color: #bc5287;
             font-weight: bold;
+        }
+
+        .petunjuk-foto {
+            color: #bc5287;
+            font-size: 13px;
         }
 
         /* SURAT DAN AMPLOP */
@@ -508,12 +520,13 @@
         </div>
     </section>
 
-    <!-- KENANGAN -->
+    <!-- KENANGAN: 4 KOTAK, 8 FOTO BERGANTIAN -->
     <section id="kenangan">
         <h2 class="judul">Our Little Memories 📸</h2>
 
         <p class="deskripsi">
             Kumpulan foto kenangan manis untuk Oca. 💕
+            Tunggu sebentar untuk melihat foto lainnya!
         </p>
 
         <div class="memory-grid">
@@ -537,6 +550,10 @@
                 <p class="caption">🌷 Sweet Memory #4</p>
             </div>
         </div>
+
+        <p class="petunjuk-foto">
+            ✨ Foto akan berganti otomatis setiap 4 detik ✨
+        </p>
     </section>
 
     <!-- SURAT DENGAN AMPLOP -->
@@ -685,7 +702,7 @@
         <p>Specially made for Oca 🎀</p>
     </footer>
 
-    <!-- SATU PEMUTAR MUSIK UNTUK SEMUA BAGIAN -->
+    <!-- PEMUTAR MUSIK TETAP -->
     <div class="pemutar-tetap">
         <p>🎵 Lagu spesial untuk Oca 💗</p>
 
@@ -739,6 +756,47 @@
                 );
             });
         });
+
+        // DAFTAR 8 FOTO
+        var daftarFoto = [
+            "images/foto1.jpg",
+            "images/foto2.jpg",
+            "images/foto3.jpg",
+            "images/foto4.jpg",
+            "images/foto5.jpg",
+            "images/foto6.jpg",
+            "images/foto7.jpg",
+            "images/foto8.jpg"
+        ];
+
+        // Foto yang sedang digunakan setiap kotak
+        var nomorFoto = [0, 1, 2, 3];
+
+        // Ganti foto setiap 4 detik
+        setInterval(function() {
+            var kotakFoto = document.querySelectorAll(".memory-card img");
+
+            for (var i = 0; i < kotakFoto.length; i++) {
+                nomorFoto[i] = (nomorFoto[i] + 4) % daftarFoto.length;
+
+                kotakFoto[i].classList.add("ganti");
+
+                (function(gambar, nomor) {
+                    setTimeout(function() {
+                        gambar.src = daftarFoto[nomor];
+
+                        gambar.onload = function() {
+                            gambar.classList.remove("ganti");
+                        };
+
+                        gambar.onerror = function() {
+                            gambar.classList.remove("ganti");
+                            console.log("Foto tidak ditemukan: " + gambar.src);
+                        };
+                    }, 500);
+                })(kotakFoto[i], nomorFoto[i]);
+            }
+        }, 4000);
 
         // Membuka amplop dan menampilkan surat
         function bukaSurat() {
