@@ -1,3 +1,39 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Surat Untukmu ♡</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">🏠 Home</a><a href="kenangan.html">📸 Kenangan</a><a class="active" href="surat.html">💌 Surat</a><a href="musik.html">🎵 Musik</a><a href="kejutan.html">🎁 Kejutan</a></nav>
-<main class="center"><div class="bow">💌</div><p class="note">JUST FOR YOU</p><h1 style="font-size:clamp(38px,7vw,58px)">Surat Kecil Untukmu ♡</h1><p class="sub">Tekan tombol di bawah untuk membuka suratnya.</p><button class="btn" id="openLetter">Buka suratnya ♡</button><article class="letter hidden" id="letter"><p>Untuk <strong>Ocaa</strong>,</p><p>Selamat ulang tahun, yaa Sayanggg! ♡</p><p>Semoga di umur yang baru ini, hal-hal baik selalu datang ke kamu. Semoga kamu selalu sehat, bahagia, dikelilingi orang-orang yang tulus, dan dimudahkan dalam setiap langkahmu.</p><p>Terima kasih sudah menjadi seseorang yang begitu spesial. Aku harap hari ini bisa membuat kamu tersenyum, karena kamu pantas mendapatkan banyak sekali kebahagiaan.</p><p>Jangan pernah lupa kalau kamu berharga. Semoga semua doa baik yang kamu simpan satu per satu menjadi nyata.</p><p class="signature">With lots of love, ♡<br><strong>HILMI</strong></p></article></main><footer>surat ini dibuat khusus untukmu ♡</footer><script>document.getElementById('openLetter').addEventListener('click',function(){let l=document.getElementById('letter');l.classList.toggle('hidden');this.textContent=l.classList.contains('hidden')?'Buka suratnya ♡':'Tutup suratnya ♡';});</script></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Surat Untukmu ♡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="kenangan.html">📸 Kenangan</a>
+    <a class="active" href="surat.html">💌 Surat</a>
+    <a href="musik.html">🎵 Musik</a>
+    <a href="kejutan.html">🎁 Kejutan</a>
+</nav>
+
+<div class="mini-music">
+    <span>🎀 Lagu untuk Oca ♡</span>
+    <audio controls loop>
+        <source src="music/lagu-oca.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+    </audio>
+</div>
+
+<main class="center">
+    <div class="bow">💌</div>
+    <p class="note">JUST FOR YOU</p>
+    <h1 style="font-size:clamp(38px,7vw,58px)">Surat Kecil Untukmu ♡</h1>
+    <p class="sub">Tekan tombol di bawah untuk membuka suratnya.</p>
+
+    <button class="btn" id="openLetter">Buka suratnya ♡</button>
+
+    <article class="letter hidden" id="letter">
+        <p>Untuk <strong>Ocaa</strong>,</p>
+        <p>Selamat ulang tahun, yaa Sayanggg! ♡</p>
+        <p>Semoga di umur yang baru ini, hal-hal baik selalu datang ke kamu. Semoga kamu selalu sehat, bahagia, dikelilingi orang-orang yang tulus, dan dimudahkan dalam setiap langkahmu.</p>
+        <p>Terima kasih
