@@ -1,3 +1,65 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Kejutan! ♡</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">🏠 Home</a><a href="kenangan.html">📸 Kenangan</a><a href="surat.html">💌 Surat</a><a href="musik.html">🎵 Musik</a><a class="active" href="kejutan.html">🎁 Kejutan</a></nav>
-<main class="center"><div class="panel"><div class="cake">🎂</div><p class="note">MAKE A WISH</p><h1 style="font-size:clamp(38px,7vw,58px)">Make a Wish! ✨</h1><p class="sub">Pejamkan mata sebentar, lalu buat satu harapan terbaikmu.</p><button class="btn" id="wish">Aku sudah membuat harapan ♡</button><p id="message" class="sub"></p><div class="decor">🎁 💗 🎀 🧸 💗 🎁</div></div></main><footer>semoga semua harapan baikmu terwujud ♡</footer><script>document.getElementById('wish').addEventListener('click',function(){document.getElementById('message').textContent='Semoga harapanmu menjadi nyata! ♡ ✨🎀';for(let i=0;i<22;i++){let e=document.createElement('span');e.textContent=['♡','✦','💗','✨'][Math.floor(Math.random()*4)];e.style.cssText='position:fixed;left:'+Math.random()*100+'vw;top:-25px;font-size:'+(16+Math.random()*18)+'px;z-index:99;pointer-events:none';document.body.appendChild(e);let a=e.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(105vh) rotate(300deg)',opacity:0}],{duration:1800+Math.random()*1200,easing:'ease-in'});a.onfinish=()=>e.remove();}});</script></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kejutan! ♡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="kenangan.html">📸 Kenangan</a>
+    <a href="surat.html">💌 Surat</a>
+    <a href="musik.html">🎵 Musik</a>
+    <a class="active" href="kejutan.html">🎁 Kejutan</a>
+</nav>
+
+<div class="mini-music">
+    <span>🎀 Lagu untuk Oca ♡</span>
+    <audio controls loop>
+        <source src="music/lagu-oca.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+    </audio>
+</div>
+
+<main class="center">
+    <div class="panel">
+        <div class="cake">🎂</div>
+        <p class="note">MAKE A WISH</p>
+        <h1 style="font-size: clamp(38px, 7vw, 58px)">Make a Wish! ✨</h1>
+        <p class="sub">Pejamkan mata sebentar, lalu buat satu harapan terbaikmu.</p>
+
+        <button class="btn" id="wish">Aku sudah membuat harapan ♡</button>
+        <p id="message" class="sub"></p>
+
+        <div class="decor">🎁 💗 🎀 🧸 💗 🎁</div>
+    </div>
+</main>
+
+<footer>semoga semua harapan baikmu terwujud ♡</footer>
+
+<script>
+document.getElementById('wish').addEventListener('click', function() {
+    document.getElementById('message').textContent =
+        'Semoga harapanmu menjadi nyata! ♡ ✨🎀';
+
+    for (let i = 0; i < 22; i++) {
+        let e = document.createElement('span');
+        e.textContent = ['♡', '✦', '💗', '✨'][Math.floor(Math.random() * 4)];
+
+        e.style.cssText =
+            'position:fixed;left:' + Math.random() * 100 +
+            'vw;top:-25px;font-size:' + (16 + Math.random() * 18) +
+            'px;z-index:99;pointer-events:none';
+
+        document.body.appendChild(e);
+
+        let a = e.animate(
+            [
+                { transform: 'translateY(0)', opacity: 1 },
+                { transform: 'translateY(105vh) rotate(300deg)', opacity: 0 }
+            ],
+            {
+               
